@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CTASection() {
+  const { user } = useAuth();
+
   return (
     <section className="mx-auto max-w-7xl px-6 pb-24">
       <div className="rounded-3xl bg-brand-teal px-8 py-14 text-center text-paper">
@@ -12,10 +17,10 @@ export default function CTASection() {
           corner of Dhaka deserves to be found.
         </p>
         <Link
-          href="/register"
+          href={user ? "/spots/add" : "/register"}
           className="mt-6 inline-block rounded-full bg-brand-gold px-8 py-3 text-sm font-semibold text-brand-teal-dark transition-colors hover:bg-brand-gold-light"
         >
-          Add your first spot
+          {user ? "Add your spot" : "Add your first spot"}
         </Link>
       </div>
     </section>
