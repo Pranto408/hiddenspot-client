@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-teal: #0f3d3e;
+  --color-brand-teal-dark: #0a2b2c;
+  --color-brand-gold: #e8a33d;
+  --color-brand-gold-light: #f2c273;
+  --color-paper: #faf7f2;
+  --color-ink: #1b1f1d;
+  --color-ink-soft: #4a524e;
+
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-manrope), sans-serif;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
