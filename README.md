@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HiddenSpot — Frontend
+
+A field guide to Dhaka's hidden gems and micro-adventures. Built with Next.js (App Router), TypeScript, Tailwind CSS v4, and Recharts.
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 (CSS-first theme config)
+- **Charts:** Recharts
+- **HTTP client:** Axios
+- **Icons:** Lucide React
+
+## Features
+
+- Landing page with interactive hero, featured spots, category browsing, and a spots-by-category chart
+- Explore page with live search, category/difficulty filters, sorting, and pagination
+- Spot details page with image gallery, reviews, and related spots
+- JWT-based auth (register/login, demo login button) via a custom `AuthContext`
+- Protected routes: Add Spot, Manage Spots (view/delete)
+- Fully responsive, custom teal/gold/paper design system
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` in the project root:
+```
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Update this to your deployed backend URL when going to production.
 
-## Learn More
+### 3. Run the dev server
 
-To learn more about Next.js, take a look at the following resources:
+Make sure the backend is running first, then:
+```bash
+npm run dev
+```
+Visit `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Demo Credentials
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@hiddenspot.com` | `admin123` |
+| User | `demo@hiddenspot.com` | `demo123` |
 
-## Deploy on Vercel
+(Or use the **"Try demo account"** button on the login page.)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
+```
+src/
+  app/           — Pages (App Router): /, /explore, /spots/[id], /spots/add,
+                   /spots/manage, /login, /register, /about, /contact
+  components/    — Navbar, Footer, SpotCard, Hero, forms, filters, etc.
+  context/       — AuthContext (global auth state, JWT persistence)
+  lib/           — Axios API client
+  types/         — Shared TypeScript types (mirrors backend models)
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design System
+
+- **Colors:** deep petrol teal (primary), marigold gold (accent), warm paper (background) — max 3 primary colors per project requirements
+- **Type:** Fraunces (display/headings), Manrope (body)
+
+## Scripts
+| Command | Description |
+|---|---|
+| `npm run dev` | Start dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm start` | Run production build |
+
+## Notes
+
+- All spot data is real (real Dhaka locations, descriptions, and images) — no placeholder/lorem ipsum content.
+- Images are loaded via direct Unsplash CDN URLs (`images.unsplash.com/photo-...`); avoid `source.unsplash.com` links, which were deprecated in 2024 and no longer resolve.
